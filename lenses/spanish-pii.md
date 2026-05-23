@@ -1,6 +1,7 @@
 ---
 title: "Spanish PII"
 slug: "spanish-pii"
+license: "Apache-2"
 status: "available"
 entities:
   - "PERSON"

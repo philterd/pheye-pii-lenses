@@ -1,6 +1,7 @@
 ---
 title: "German PII"
 slug: "german-pii"
+license: "Apache-2"
 status: "available"
 entities:
   - "PERSON"

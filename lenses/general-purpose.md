@@ -1,6 +1,7 @@
 ---
 title: "General Purpose"
 slug: "general-purpose"
+license: "Apache-2"
 status: "available"
 entities:
   - "PERSON"

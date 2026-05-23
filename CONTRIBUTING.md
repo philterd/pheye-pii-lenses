@@ -7,7 +7,7 @@ Pull requests welcome. The process is designed to be lightweight while keeping t
 - **Specific.** Targets a defined domain (one industry, one language, one identifier family). Catch-all lenses are less useful than focused ones — they duplicate what the General Purpose lens already covers.
 - **Documented.** The sidecar `.md` explains what entities it detects, what corpus it was trained on, what it's known to miss, and which other lenses it composes well with.
 - **Tested.** Reviewers (and users picking the lens) need to be able to evaluate the lens against their data. Provide an example input and example detection output where possible.
-- **Licensed.** You're submitting under [Apache 2.0](LICENSE).
+- **Licensed.** Each lens declares its own license via the `license` field in the frontmatter (e.g., `license: "Apache-2"`). There is no repo-wide LICENSE file — the per-lens declaration is authoritative. Core-team lenses use Apache-2; community contributions may use other terms as long as they're explicit.
 
 ## File layout
 
@@ -27,6 +27,7 @@ Every lens `.md` must have this frontmatter:
 ---
 title: "Human-readable lens name"        # required
 slug: "your-lens-slug"                   # required, must match filename
+license: "Apache-2"                      # required, e.g. Apache-2, MIT, Proprietary
 status: "available"                      # required: available | preview | coming-soon | deprecated
 entities:                                # required, one or more entity types the lens detects
   - "PERSON"

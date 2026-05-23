@@ -7,6 +7,7 @@
   "required": [
     "title",
     "slug",
+    "license",
     "status",
     "entities",
     "languages",
@@ -28,6 +29,11 @@
       "type": "string",
       "pattern": "^[a-z0-9][a-z0-9-]{0,62}$",
       "description": "URL-safe identifier — must match the filename and the URL on philterd.ai/lenses/<slug>/."
+    },
+    "license": {
+      "type": "string",
+      "minLength": 1,
+      "description": "License identifier for this lens (e.g. 'Apache-2', 'MIT', 'Proprietary'). Each lens declares its own license — there is no repo-wide LICENSE file."
     },
     "status": {
       "type": "string",

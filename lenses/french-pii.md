@@ -1,6 +1,7 @@
 ---
 title: "French PII"
 slug: "french-pii"
+license: "Apache-2"
 status: "available"
 entities:
   - "PERSON"

@@ -1,6 +1,7 @@
 ---
 title: "Healthcare"
 slug: "healthcare"
+license: "Apache-2"
 status: "available"
 entities:
   - "PERSON"

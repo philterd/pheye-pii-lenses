@@ -33,11 +33,10 @@ pheye-pii-lenses/
 │   └── lens.schema.json             # JSON schema for the .md frontmatter
 ├── tests/
 │   └── validate.sh                  # CI validator (frontmatter + schema)
-├── LICENSE                          # Apache 2.0
 └── README.md                        # this file
 ```
 
-Each lens has a single sidecar `.md` file. The frontmatter is the structured metadata (slug, entities, status, version, pairs-with hints); the markdown body is the long-form description, training notes, and use-case guidance.
+Each lens has a single sidecar `.md` file. The frontmatter is the structured metadata (slug, license, entities, status, version, pairs-with hints); the markdown body is the long-form description, training notes, and use-case guidance.
 
 ## Adding a lens
 
@@ -49,4 +48,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the full process. The short version:
 
 ## License
 
-Apache 2.0. See [LICENSE](LICENSE).
+**Licensing is per-lens.** Each lens declares its own license via the `license` field in its sidecar `.md` frontmatter — see the individual files under `lenses/` for the license that applies to that lens. Most core-team lenses are Apache 2.0; community-contributed lenses may use different terms. There is no repo-wide LICENSE file: refer to the per-lens metadata.

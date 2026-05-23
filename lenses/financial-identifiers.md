@@ -1,6 +1,7 @@
 ---
 title: "Financial Identifiers"
 slug: "financial-identifiers"
+license: "Apache-2"
 status: "available"
 entities:
   - "PAN"

@@ -14,7 +14,7 @@ cd "$ROOT"
 errors=0
 checked=0
 
-REQUIRED_FRONTMATTER=(title slug status entities languages summary useCase author creator version updated pheyeCompatibility)
+REQUIRED_FRONTMATTER=(title slug license status entities languages summary useCase author creator version updated pheyeCompatibility)
 ALLOWED_STATUS=(available preview coming-soon deprecated)
 
 # Convert allowed-status array to a regex alternation for grep

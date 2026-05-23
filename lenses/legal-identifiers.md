@@ -1,6 +1,7 @@
 ---
 title: "Legal Identifiers"
 slug: "legal-identifiers"
+license: "Apache-2"
 status: "available"
 entities:
   - "CASE_NUMBER"

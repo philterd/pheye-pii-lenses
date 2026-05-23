@@ -1,6 +1,7 @@
 ---
 title: "COVID-19"
 slug: "covid-19"
+license: "Apache-2"
 status: "available"
 entities:
   - "TEST_RESULT"
