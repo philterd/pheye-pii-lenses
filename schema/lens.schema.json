@@ -33,7 +33,7 @@
     "license": {
       "type": "string",
       "minLength": 1,
-      "description": "License identifier for this lens (e.g. 'Apache-2', 'MIT', 'Proprietary'). Each lens declares its own license — there is no repo-wide LICENSE file."
+      "description": "SPDX license identifier for this lens (e.g. 'Apache-2.0', 'MIT', 'Proprietary'). Each lens declares its own license — there is no repo-wide LICENSE file."
     },
     "status": {
       "type": "string",

@@ -1,7 +1,7 @@
 ---
 title: "Portuguese PII"
 slug: "portuguese-pii"
-license: "Apache-2"
+license: "Apache-2.0"
 status: "available"
 entities:
   - "PERSON"

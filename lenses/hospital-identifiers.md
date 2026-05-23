@@ -1,7 +1,7 @@
 ---
 title: "Hospital Identifiers"
 slug: "hospital-identifiers"
-license: "Apache-2"
+license: "Apache-2.0"
 status: "available"
 entities:
   - "HOSPITAL"
