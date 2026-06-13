@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://philterd.ai/schemas/lens.schema.json",
   "title": "PhEye PII Lens",
-  "description": "Frontmatter metadata for a PII lens — the structured fields the website and PhEye consume from each lens's sidecar .md file.",
+  "description": "Frontmatter metadata for a PII lens: the structured fields the website and PhEye consume from each lens's sidecar .md file.",
   "type": "object",
   "required": [
     "title",
@@ -28,12 +28,12 @@
     "slug": {
       "type": "string",
       "pattern": "^[a-z0-9][a-z0-9-]{0,62}$",
-      "description": "URL-safe identifier — must match the filename and the URL on philterd.ai/lenses/<slug>/."
+      "description": "URL-safe identifier; must match the filename and the URL on philterd.ai/lenses/<slug>/."
     },
     "license": {
       "type": "string",
       "minLength": 1,
-      "description": "SPDX license identifier for this lens (e.g. 'Apache-2.0', 'MIT', 'Proprietary'). Each lens declares its own license — there is no repo-wide LICENSE file."
+      "description": "SPDX license identifier for this lens (e.g. 'Apache-2.0', 'MIT', 'Proprietary'). Each lens declares its own license; there is no repo-wide LICENSE file."
     },
     "status": {
       "type": "string",
@@ -69,6 +69,19 @@
       "minLength": 1,
       "description": "Slugified author handle. Use 'philterd' for core team lenses."
     },
+    "provenance": {
+      "type": "string",
+      "enum": ["Philterd", "Community"],
+      "description": "Who trained the underlying model: 'Philterd' for a Philterd-trained lens, 'Community' for a curated third-party open-source model."
+    },
+    "hf_name": {
+      "type": "string",
+      "description": "Optional, the Hugging Face model id backing this lens (e.g. 'philterd/ph-eye-pii-base'), when the model is published there."
+    },
+    "hf_url": {
+      "type": "string",
+      "description": "Optional, the Hugging Face URL for the backing model."
+    },
     "version": {
       "type": "string",
       "pattern": "^\\d+\\.\\d+\\.\\d+(-[A-Za-z0-9.-]+)?$",
@@ -82,7 +95,7 @@
     "pheyeCompatibility": {
       "type": "string",
       "minLength": 1,
-      "description": "Semver range — which PhEye versions can load this lens."
+      "description": "Semver range: which PhEye versions can load this lens."
     },
     "modelSize": {
       "type": "string",
