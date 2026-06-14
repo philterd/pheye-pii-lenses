@@ -4,18 +4,15 @@ slug: "covid-19"
 license: "Apache-2.0"
 status: "available"
 entities:
-  - "TEST_RESULT"
-  - "VACCINE_BATCH"
-  - "VARIANT"
-  - "PANDEMIC_CLINICAL_TERM"
+  - "PERSON"
 languages: ["en"]
-summary: "Pandemic-era documents have a vocabulary that pre-2020 healthcare models don't fully cover. Use this lens alongside Healthcare for clinical text from 2020-onward."
-useCase: "Add this lens when the corpus contains COVID-era clinical text: test results, vaccination records, variant mentions, pandemic-specific clinical references."
+summary: "Person-name detection tuned for documents primarily about COVID-19, where pandemic vocabulary (variants, vaccine manufacturers, treatments) creates name-like distractors that general models mistag. Improves name F1 on COVID-era text."
+useCase: "Load this lens for person-name detection in documents primarily about COVID-19: patient records, vaccination records, contact-tracing notes, and pandemic-era clinical text. It is tuned to keep precision high where COVID vocabulary (variant names, vaccine manufacturers, treatments, place names) would otherwise be mistaken for people's names."
 author: "Philterd"
 creator: "philterd"
 provenance: "Philterd"
 version: "1.0.0"
-updated: "2026-05-22"
+updated: "2026-06-14"
 pheyeCompatibility: ">=1.0.0"
 modelSize: "75 MB"
 pairsWith: ["healthcare", "hospital-identifiers"]
@@ -23,22 +20,26 @@ pairsWith: ["healthcare", "hospital-identifiers"]
 
 ## What this lens detects
 
-Four entity classes specific to pandemic-era clinical text:
+A single entity class:
 
-- **Test result terminology**: `SARS-CoV-2 positive`, `antigen-negative`, `PCR confirmed`, `rapid test negative`, etc. The vocabulary was barely-existent in pre-2020 clinical corpora and a Healthcare-lens-trained-on-2018-data misses most of it.
-- **Vaccine batch identifiers**: lot numbers, batch codes, manufacturer-specific identifiers from the Pfizer / Moderna / J&amp;J / AstraZeneca campaigns.
-- **Variant names**: Alpha, Beta, Gamma, Delta, Omicron, BA.5, JN.1, etc., as named entities. (Useful where variant identification is part of the clinical context.)
-- **Pandemic-specific clinical terms**: `monoclonal antibody`, `convalescent plasma`, `Paxlovid`, terms that entered routine clinical vocabulary during the pandemic.
+- **PERSON**: people's names (patients, clinicians, family members) as they appear in documents that are primarily about COVID-19.
 
-This is a **supplemental lens**. It doesn't try to detect generic clinical entities. Load it alongside the Healthcare lens, which handles the broader clinical vocabulary.
+This is a name detector. It does not detect test results, variants, vaccine identifiers, or other PHI; load it alongside the [Healthcare](/lenses/healthcare/) and [Hospital Identifiers](/lenses/hospital-identifiers/) lenses for the rest of the PHI set.
+
+## Why a COVID-specific name lens
+
+Names are written the same everywhere, but COVID-19 documents are unusually dense with **name-like non-names**: variant designations (Alpha, Delta, Omicron), vaccine manufacturers (Pfizer, Moderna), treatments (Paxlovid), and place names (Wuhan). A general-purpose name model tends to false-positive on these, mistagging pandemic vocabulary as people's names. This lens is tuned on COVID-primary text so it keeps those distractors out of its PERSON predictions, raising precision and overall name F1 on pandemic-era documents without losing recall on the real names.
 
 ## When to use this
 
-- **Clinical text from 2020-onward** that touches respiratory illness, vaccination, or infectious-disease workflow.
-- **Vaccination-record processing** for compliance, employer attestation, or research.
-- **Post-COVID research corpora** where the variant and treatment vocabulary needs to be preserved structurally (and redacted, if appropriate).
+- **COVID-era patient records and clinical notes** where accurate name redaction is the goal.
+- **Vaccination records and contact-tracing notes** that pair personal names with heavy pandemic vocabulary.
+- **Post-COVID research corpora** containing personal data alongside variant and treatment terminology.
+
+For documents that are only incidentally about COVID-19, the General Purpose or English Medical name detectors are usually sufficient; reach for this lens when COVID vocabulary is pervasive enough to confuse a general model.
 
 ## Known limitations
 
-- **Vocabulary drift.** The COVID clinical vocabulary continues to evolve (new variants, new treatments, new test types). The lens is versioned; future versions will track the evolution.
-- **Distinguishes COVID-era PHI but not COVID-era diagnoses.** This is a *PII lens*, not a clinical-coding tool. It finds entities to redact; it doesn't categorize them as protected vs unprotected; that's the policy engine's job.
+- **Names only.** This lens does not detect dates, identifiers, addresses, or other PHI; compose it with other lenses for full coverage.
+- **English only.** For other languages, load the corresponding language lens.
+- **Tuned for COVID-primary text.** Its advantage is specific to documents where pandemic vocabulary is pervasive; on general text it offers no benefit over the General Purpose name detector.
