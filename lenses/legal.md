@@ -1,6 +1,6 @@
 ---
-title: "Legal Identifiers"
-slug: "legal-identifiers"
+title: "Legal"
+slug: "legal"
 license: "Apache-2.0"
 status: "available"
 entities:

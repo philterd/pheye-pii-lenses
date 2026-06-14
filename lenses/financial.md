@@ -1,6 +1,6 @@
 ---
-title: "Financial Identifiers"
-slug: "financial-identifiers"
+title: "Financial"
+slug: "financial"
 license: "Apache-2.0"
 status: "available"
 entities:

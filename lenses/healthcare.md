@@ -15,7 +15,7 @@ version: "1.0.0"
 updated: "2026-05-22"
 pheyeCompatibility: ">=1.0.0"
 modelSize: "210 MB"
-pairsWith: ["general-purpose", "hospital-identifiers", "covid-19"]
+pairsWith: ["general-purpose", "hospital", "covid-19"]
 ---
 ## What this lens detects
 

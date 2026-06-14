@@ -1,6 +1,6 @@
 ---
-title: "Hospital Identifiers"
-slug: "hospital-identifiers"
+title: "Hospital"
+slug: "hospital"
 license: "Apache-2.0"
 status: "available"
 entities:

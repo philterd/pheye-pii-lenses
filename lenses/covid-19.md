@@ -15,7 +15,7 @@ version: "1.0.0"
 updated: "2026-06-14"
 pheyeCompatibility: ">=1.0.0"
 modelSize: "75 MB"
-pairsWith: ["healthcare", "hospital-identifiers"]
+pairsWith: ["healthcare", "hospital"]
 ---
 
 ## What this lens detects
@@ -24,7 +24,7 @@ A single entity class:
 
 - **PERSON**: people's names (patients, clinicians, family members) as they appear in documents that are primarily about COVID-19.
 
-This is a name detector. It does not detect test results, variants, vaccine identifiers, or other PHI; load it alongside the [Healthcare](/lenses/healthcare/) and [Hospital Identifiers](/lenses/hospital-identifiers/) lenses for the rest of the PHI set.
+This is a name detector. It does not detect test results, variants, vaccine identifiers, or other PHI; load it alongside the [Healthcare](/lenses/healthcare/) and [Hospital](/lenses/hospital/) lenses for the rest of the PHI set.
 
 ## Why a COVID-specific name lens
 
