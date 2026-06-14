@@ -5,15 +5,9 @@ license: "Apache-2.0"
 status: "available"
 entities:
   - "PERSON"
-  - "LOCATION"
-  - "ORG"
-  - "STEUER_ID"
-  - "PERSONALAUSWEIS"
-  - "PHONE"
-  - "ADDRESS"
 languages: ["de"]
-summary: "German-language PII detection for documents from Germany, Austria, and Switzerland, including Steuer-ID and Personalausweis identifiers."
-useCase: "Load this lens for German-language text. Healthcare and contact-center workloads in DACH markets typically pair it with General Purpose and the domain-specific lens."
+summary: "Person-name detection tuned for German-language text. Phileas handles German identifiers (Steuer-ID, Personalausweis), phone numbers, and addresses via its pattern-based layer; this lens focuses on people's names."
+useCase: "Load this lens for person-name detection in German-language documents. It is a focused PERSON detector; German identifiers (Steuer-ID, Personalausweis), phone numbers, and addresses are handled by Phileas's pattern-based detection, not this model."
 author: "Philterd"
 creator: "philterd"
 provenance: "Philterd"
@@ -23,27 +17,23 @@ pheyeCompatibility: ">=1.0.0"
 modelSize: "195 MB"
 pairsWith: ["general-purpose", "healthcare"]
 ---
-
 ## What this lens detects
 
-PII in German-language text, including:
+- **PERSON**: people's names as they appear in German-language text.
 
-- **Person names**: German, Austrian, and Swiss-German naming conventions including von-prefixed surnames and umlaut variants.
-- **Locations and organizations**: German address format (`Hauptstraße 12, 80331 München`), Austrian and Swiss-German address conventions.
-- **Steuer-ID**: German tax identifier, 11 digits.
-- **Personalausweis**: German national ID card number, 9 alphanumeric characters with checksum.
-- **Phone numbers**: German (`+49`), Austrian (`+43`), Swiss (`+41`) phone formats.
-- **Addresses**: German-language address conventions including PLZ (postal code) patterns.
+This is a name-only lens. German identifiers (Steuer-ID, Personalausweis), phone numbers, and addresses are detected by Phileas's pattern-based (regex and validation) layer, not by this model. Compose this lens with that layer for full coverage.
+
+## Why this lens
+
+German names and the capitalization of common nouns create distractors a general English model handles poorly. This lens is trained on German text to detect German name forms accurately while rejecting capitalized non-names.
 
 ## When to use this
 
-- **Documents from Germany, Austria, Switzerland (German regions), Liechtenstein**.
-- **DACH healthcare**: clinical text in German; combine with the Healthcare lens for the broader clinical vocabulary.
-- **DSGVO-driven workflows.** Germany's data-protection enforcement is strict; data minimization with self-hosted detection is the standard pattern. The lens supports the GDPR / DSGVO compliance posture.
-- **Bilingual environments**: combine with General Purpose for English / German mixed documents (common in multinational enterprise records).
+- German-language documents of any domain.
+- Mixed corpora, loaded when German content is present.
+- Any workflow where German person names must be found reliably.
 
 ## Known limitations
 
-- **Umlaut handling.** Documents that have been transliterated (`ä` → `ae`, `ö` → `oe`) get reduced recall; the lens recognizes both forms but is calibrated against well-formed text.
-- **Swiss-German dialect.** Written text in Swiss-German dialect (uncommon in formal documents but appears in informal correspondence) has lower recall than High German.
-- **Austrian-specific identifiers** (such as the Sozialversicherungsnummer) are recognized as generic identifiers; specific Austrian / Swiss-specific structured identifiers may benefit from a custom-identifier regex in the policy layer.
+- **Names only.** This lens detects PERSON. Other PII is handled by Phileas's pattern-based detection; compose accordingly.
+- **German-language text. Names only; German identifiers, phones, and addresses are detected by Phileas.**
