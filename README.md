@@ -19,16 +19,9 @@ Lens descriptions, entity coverage, and use-case guidance are versioned alongsid
 ```
 pheye-pii-lenses/
 ├── lenses/                          # one .md per lens, frontmatter-driven
-│   ├── general-purpose.md
-│   ├── healthcare.md
-│   ├── hospital-identifiers.md
-│   ├── covid-19.md
-│   ├── spanish-pii.md
-│   ├── french-pii.md
-│   ├── german-pii.md
-│   ├── portuguese-pii.md
-│   ├── legal-identifiers.md
-│   └── financial-identifiers.md
+│   ├── ph-eye-pii-en-small.md
+│   ├── ph-eye-pii-en-medium.md
+│   └── ph-eye-pii-en-large.md
 ├── schema/
 │   └── lens.schema.json             # JSON schema for the .md frontmatter
 ├── tests/
@@ -48,4 +41,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the full process. The short version:
 
 ## License
 
-**Licensing is per-lens.** Each lens declares its own license via the `license` field in its sidecar `.md` frontmatter — see the individual files under `lenses/` for the license that applies to that lens. Most core-team lenses are Apache 2.0; community-contributed lenses may use different terms. There is no repo-wide LICENSE file: refer to the per-lens metadata.
+**Licensing is per-lens.** Each lens declares its own license via the `license` field in its sidecar `.md` frontmatter; see the individual files under `lenses/` for the license that applies to that lens. The current `ph-eye-pii-en` lenses are CC-BY-4.0 (inherited from the NVIDIA Nemotron-PII training data, which requires attribution to NVIDIA); community-contributed lenses may use different terms. There is no repo-wide LICENSE file: refer to the per-lens metadata.
