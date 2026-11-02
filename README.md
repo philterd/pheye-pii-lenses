@@ -26,6 +26,7 @@ pheye-pii-lenses/
 │   └── lens.schema.json             # JSON schema for the .md frontmatter
 ├── tests/
 │   └── validate.sh                  # CI validator (frontmatter + schema)
+├── LICENSE                          # Apache 2.0, for the catalog files
 └── README.md                        # this file
 ```
 
@@ -41,4 +42,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the full process. The short version:
 
 ## License
 
-**Licensing is per-lens.** Each lens declares its own license via the `license` field in its sidecar `.md` frontmatter; see the individual files under `lenses/` for the license that applies to that lens. The current `ph-eye-pii-en` lenses are CC-BY-4.0 (inherited from the NVIDIA Nemotron-PII training data, which requires attribution to NVIDIA); community-contributed lenses may use different terms. There is no repo-wide LICENSE file: refer to the per-lens metadata.
+The catalog files in this repository (lens `.md` files, schema, and scripts) are licensed under [Apache 2.0](LICENSE).
+
+Each lens's model has its own license, given by the `license` field in its frontmatter. It must be an open license that permits commercial use and redistribution (`Apache-2.0`, `MIT`, `BSD-2-Clause`, `BSD-3-Clause`, `CC0-1.0`, `CC-BY-4.0`, or `CC-BY-SA-4.0`); see [CONTRIBUTING.md](CONTRIBUTING.md). The `ph-eye-pii-en` lenses are CC-BY-4.0, inherited from the NVIDIA Nemotron-PII training data, which requires attribution to NVIDIA.

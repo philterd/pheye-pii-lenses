@@ -3,6 +3,7 @@
 # - Each lens .md must have the required frontmatter fields
 # - Slug in frontmatter must match the filename
 # - Status must be one of the allowed values
+# - License must be an allowed open license (commercial use and redistribution permitted)
 # - Entities and languages must be non-empty arrays (lightly checked)
 # - Slugs must be globally unique
 
@@ -16,6 +17,8 @@ checked=0
 
 REQUIRED_FRONTMATTER=(title slug license status entities languages summary useCase author creator version updated pheyeCompatibility)
 ALLOWED_STATUS=(available preview coming-soon deprecated)
+# Keep in sync with the license enum in schema/lens.schema.json and CONTRIBUTING.md.
+ALLOWED_LICENSES=(Apache-2.0 MIT BSD-2-Clause BSD-3-Clause CC0-1.0 CC-BY-4.0 CC-BY-SA-4.0)
 
 # Convert allowed-status array to a regex alternation for grep
 status_regex="^(${ALLOWED_STATUS[0]}"
@@ -45,6 +48,17 @@ while IFS= read -r md; do
   status_from_md=$(grep -m1 '^status:' "$md" | sed -E 's/^status:[[:space:]]*"?([^"]+)"?[[:space:]]*$/\1/')
   if ! echo "$status_from_md" | grep -Eq "$status_regex"; then
     echo "ERROR: $md has status '$status_from_md' (must be one of: ${ALLOWED_STATUS[*]})"
+    errors=$((errors + 1))
+  fi
+
+  # License is one of the allowed open licenses
+  license_from_md=$(grep -m1 '^license:' "$md" | sed -E 's/^license:[[:space:]]*"?([^"]+)"?[[:space:]]*$/\1/')
+  license_ok=0
+  for l in "${ALLOWED_LICENSES[@]}"; do
+    [ "$license_from_md" = "$l" ] && license_ok=1
+  done
+  if [ $license_ok -eq 0 ]; then
+    echo "ERROR: $md has license '$license_from_md' (must be one of: ${ALLOWED_LICENSES[*]})"
     errors=$((errors + 1))
   fi
 

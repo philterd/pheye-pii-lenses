@@ -32,8 +32,8 @@
     },
     "license": {
       "type": "string",
-      "minLength": 1,
-      "description": "SPDX license identifier for this lens (e.g. 'Apache-2.0', 'MIT', 'Proprietary'). Each lens declares its own license; there is no repo-wide LICENSE file."
+      "enum": ["Apache-2.0", "MIT", "BSD-2-Clause", "BSD-3-Clause", "CC0-1.0", "CC-BY-4.0", "CC-BY-SA-4.0"],
+      "description": "SPDX identifier of the license the lens's model is published under. Must be an open license that permits commercial use and redistribution. The catalog files themselves are Apache-2.0 (see LICENSE)."
     },
     "status": {
       "type": "string",

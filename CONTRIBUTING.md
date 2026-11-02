@@ -7,7 +7,7 @@ Pull requests welcome. The process is designed to be lightweight while keeping t
 - **Specific.** Targets a defined domain (one industry, one language, one identifier family). Catch-all lenses are less useful than focused ones — they duplicate what the General Purpose lens already covers.
 - **Documented.** The sidecar `.md` explains what entities it detects, what corpus it was trained on, what it's known to miss, and which other lenses it composes well with.
 - **Tested.** Reviewers (and users picking the lens) need to be able to evaluate the lens against their data. Provide an example input and example detection output where possible.
-- **Licensed.** Each lens declares its own license via the `license` field in the frontmatter (e.g., `license: "Apache-2.0"`). Use SPDX identifiers where possible. There is no repo-wide LICENSE file — the per-lens declaration is authoritative. Core-team lenses use `Apache-2.0`; community contributions may use other terms as long as they're explicit.
+- **Openly licensed.** The `license` field gives the license the lens's model is published under, as an SPDX identifier. It must be one of `Apache-2.0`, `MIT`, `BSD-2-Clause`, `BSD-3-Clause`, `CC0-1.0`, `CC-BY-4.0`, or `CC-BY-SA-4.0`: an open license that permits commercial use and redistribution. Proprietary and non-commercial licenses (such as `CC-BY-NC-4.0`) are not accepted. The declared license must match the license on the model's published card (for example on Hugging Face). The `ph-eye-pii-en` lenses are `CC-BY-4.0`, the most permissive terms their NVIDIA Nemotron-PII training data allows.
 
 ## File layout
 
@@ -27,7 +27,7 @@ Every lens `.md` must have this frontmatter:
 ---
 title: "Human-readable lens name"        # required
 slug: "your-lens-slug"                   # required, must match filename
-license: "Apache-2.0"                    # required SPDX identifier, e.g. Apache-2.0, MIT, Proprietary
+license: "Apache-2.0"                    # required, one of the allowed licenses above
 status: "available"                      # required: available | preview | coming-soon | deprecated
 entities:                                # required, one or more entity types the lens detects
   - "PERSON"
@@ -73,6 +73,7 @@ This checks:
 - Every lens has the required frontmatter fields.
 - The `slug` field matches the filename.
 - The `status` value is one of the allowed values.
+- The `license` value is one of the allowed licenses.
 - The `entities` and `languages` fields are non-empty arrays.
 - Slugs are globally unique across the catalog.
 
@@ -89,3 +90,9 @@ CI runs the same checks on every PR.
 The Philterd website ([philterd.ai/lenses/](https://www.philterd.ai/lenses/)) syncs this repo at build time. Each lens `.md` becomes a page at `/lenses/<slug>/`, and the catalog index at `/lenses/` lists them all with summary cards.
 
 A lens marked `status: "coming-soon"` still renders on the catalog (with a different status pill) but is signaled as not-yet-shipped. Use that status when you're publishing the metadata before the trained model is ready.
+
+## Licensing and sign-off
+
+The catalog files in this repository (the lens `.md` files, schema, and scripts) are licensed under [Apache 2.0](LICENSE), and contributions to them are accepted under the same license. The `license` field in each lens describes the model, not the catalog file.
+
+Every commit in a pull request must be signed off under the [Developer Certificate of Origin](https://developercertificate.org/), certifying that you have the right to submit it. Add the sign-off with `git commit -s`. To sign off commits you have already made, run `git rebase --signoff main` and force-push your branch. A check on each pull request enforces this.
