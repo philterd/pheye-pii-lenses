@@ -25,7 +25,9 @@ pheye-pii-lenses/
 ├── schema/
 │   └── lens.schema.json             # JSON schema for the .md frontmatter
 ├── tests/
-│   └── validate.sh                  # CI validator (frontmatter + schema)
+│   ├── validate.sh                  # validator, run in CI (frontmatter + schema)
+│   ├── validate_schema.py           # checks frontmatter against the JSON schema
+│   └── requirements.txt             # Python packages the schema check needs
 ├── LICENSE                          # Apache 2.0, for the catalog files
 └── README.md                        # this file
 ```

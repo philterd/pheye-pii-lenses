@@ -61,9 +61,10 @@ Honest list of what the lens misses or gets wrong.
 
 ## Validating locally
 
-Before opening a PR, run the local validator:
+Before opening a PR, run the local validator. It needs Python 3 with the packages in `tests/requirements.txt`:
 
 ```bash
+pip install -r tests/requirements.txt
 bash tests/validate.sh
 ```
 
@@ -73,11 +74,11 @@ This checks:
 - Every lens has the required frontmatter fields.
 - The `slug` field matches the filename.
 - The `status` value is one of the allowed values.
-- The `license` value is one of the allowed licenses.
+- The frontmatter matches `schema/lens.schema.json`, including the allowed licenses, and the formats of `version`, `updated`, and `languages`.
 - The `entities` and `languages` fields are non-empty arrays.
 - Slugs are globally unique across the catalog.
 
-CI runs the same checks on every PR.
+CI runs the same checks on every pull request and push to `main`.
 
 ## Naming conventions
 
